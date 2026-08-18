@@ -7,7 +7,7 @@ Interface moderne en glassmorphism, raccourcis clavier complets, association aut
 ![Windows](https://img.shields.io/badge/platform-Windows-0078D6)
 ![Next.js](https://img.shields.io/badge/Next.js-14-black)
 ![Electron](https://img.shields.io/badge/Electron-31-47848F)
-![License](https://img.shields.io/badge/license-MIT-green)
+![License](https://img.shields.io/badge/license-PolyForm--Noncommercial--1.0.0-orange)
 
 ## Aperçu
 
@@ -131,4 +131,6 @@ $env:PAHAE_DEBUG="1"
 
 ## Licence
 
-MIT
+Ce projet est sous licence **[PolyForm Noncommercial 1.0.0](LICENSE)**.
+
+Cela signifie que tu peux utiliser, modifier et redistribuer le code **gratuitement pour un usage non commercial** (usage personnel, éducatif, associatif, expérimentation). **La vente ou l'exploitation commerciale du logiciel n'est pas autorisée** sans l'accord explicite de l'auteur.
