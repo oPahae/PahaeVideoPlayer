@@ -1,0 +1,109 @@
+{
+  "name": "pahae-video-player",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Lecteur vidéo desktop Windows basé sur Next.js et Electron",
+  "author": "Pahae",
+  "main": "electron/main.js",
+  "scripts": {
+    "dev": "concurrently -k \"npm:dev:next\" \"npm:dev:electron\"",
+    "dev:next": "next dev",
+    "dev:electron": "wait-on http://localhost:3000 && cross-env NODE_ENV=development electron .",
+    "build": "next build",
+    "start": "electron .",
+    "dist": "npm run build && electron-builder",
+    "pack": "npm run build && electron-builder --dir"
+  },
+  "dependencies": {
+    "lucide-react": "^0.454.0",
+    "next": "^14.2.5",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.19",
+    "concurrently": "^8.2.2",
+    "cross-env": "^7.0.3",
+    "electron": "^31.0.0",
+    "electron-builder": "^24.13.3",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.4",
+    "wait-on": "^7.2.0"
+  },
+  "build": {
+    "appId": "com.pahae.videoplayer",
+    "productName": "PahaeVideoPlayer",
+    "asar": true,
+    "files": [
+      "out/**/*",
+      "electron/**/*",
+      "package.json"
+    ],
+    "directories": {
+      "buildResources": "build",
+      "output": "dist"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "PahaeVideoPlayer"
+    },
+    "fileAssociations": [
+      {
+        "ext": "mp4",
+        "name": "MP4 Video",
+        "description": "Fichier vidéo MP4",
+        "role": "Viewer"
+      },
+      {
+        "ext": "mkv",
+        "name": "MKV Video",
+        "description": "Fichier vidéo MKV",
+        "role": "Viewer"
+      },
+      {
+        "ext": "avi",
+        "name": "AVI Video",
+        "description": "Fichier vidéo AVI",
+        "role": "Viewer"
+      },
+      {
+        "ext": "mov",
+        "name": "MOV Video",
+        "description": "Fichier vidéo MOV",
+        "role": "Viewer"
+      },
+      {
+        "ext": "webm",
+        "name": "WEBM Video",
+        "description": "Fichier vidéo WEBM",
+        "role": "Viewer"
+      },
+      {
+        "ext": "m4v",
+        "name": "M4V Video",
+        "description": "Fichier vidéo M4V",
+        "role": "Viewer"
+      },
+      {
+        "ext": "wmv",
+        "name": "WMV Video",
+        "description": "Fichier vidéo WMV",
+        "role": "Viewer"
+      }
+    ]
+  }
+}
