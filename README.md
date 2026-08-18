@@ -56,7 +56,7 @@ pahaeVideoPlayer/
 Prérequis : [Node.js](https://nodejs.org) 18 ou supérieur.
 
 ```bash
-git clone https://github.com/<ton-compte>/pahaeVideoPlayer.git
+git clone https://github.com/oPahae/pahaeVideoPlayer.git
 cd pahaeVideoPlayer
 npm install
 ```
