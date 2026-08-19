@@ -86,7 +86,7 @@ export default function VideoPlayer() {
     setDuration(0);
     video.src = currentVideo.url;
     video.load();
-    video.play().catch(() => {});
+    video.play().catch(() => { });
   }, [currentVideo]);
 
   useEffect(() => {
@@ -106,11 +106,16 @@ export default function VideoPlayer() {
     }, 3000);
   }, []);
 
+  const hideControlsNow = useCallback(() => {
+    if (hideControlsTimeout.current) clearTimeout(hideControlsTimeout.current);
+    setControlsVisible(false);
+  }, []);
+
   const togglePlay = useCallback(() => {
     const video = videoRef.current;
     if (!video || !video.src) return;
     if (video.paused) {
-      video.play().catch(() => {});
+      video.play().catch(() => { });
     } else {
       video.pause();
     }
@@ -239,7 +244,9 @@ export default function VideoPlayer() {
     const handler = (e) => {
       const active = document.activeElement;
       const tag = active ? active.tagName : '';
-      if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return;
+      const isRange = tag === 'INPUT' && active.type === 'range';
+      const isTypingField = tag === 'TEXTAREA' || tag === 'SELECT' || (tag === 'INPUT' && !isRange);
+      if (isTypingField) return;
 
       const s = stateRef.current;
 
@@ -378,6 +385,7 @@ export default function VideoPlayer() {
       <video
         ref={videoRef}
         className="w-full h-full object-contain bg-black"
+        onClick={hideControlsNow}
         onLoadedMetadata={handleLoadedMetadata}
         onTimeUpdate={handleTimeUpdate}
         onPlay={handlePlay}
@@ -387,9 +395,8 @@ export default function VideoPlayer() {
       />
 
       <div
-        className={`absolute top-0 left-0 right-0 z-20 flex items-center justify-between px-6 py-4 bg-gradient-to-b from-black/70 to-transparent transition-opacity duration-300 ${
-          controlsVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'
-        }`}
+        className={`absolute top-0 left-0 right-0 z-20 flex items-center justify-between px-6 py-4 bg-gradient-to-b from-black/70 to-transparent transition-opacity duration-300 ${controlsVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'
+          }`}
       >
         <span className="text-white/90 text-sm font-medium tracking-wide truncate max-w-[70%]">
           {currentVideo ? currentVideo.name : 'PahaeVideoPlayer'}

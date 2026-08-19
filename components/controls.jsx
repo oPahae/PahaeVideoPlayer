@@ -47,11 +47,14 @@ export default function Controls({
     onVolumeChange(parseFloat(e.target.value) / 100);
   };
 
+  const releaseFocus = (e) => {
+    e.target.blur();
+  };
+
   return (
     <div
-      className={`absolute bottom-0 left-0 right-0 z-20 px-4 pb-5 pt-8 sm:px-6 bg-gradient-to-t from-black/80 to-transparent transition-opacity duration-300 ${
-        visible ? 'opacity-100' : 'opacity-0 pointer-events-none'
-      }`}
+      className={`absolute bottom-0 left-0 right-0 z-20 px-4 pb-5 pt-8 sm:px-6 bg-gradient-to-t from-black/80 to-transparent transition-opacity duration-300 ${visible ? 'opacity-100' : 'opacity-0 pointer-events-none'
+        }`}
     >
       <div className="flex flex-col gap-3 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xl px-4 py-4 sm:px-5 shadow-2xl">
         <div className="flex items-center gap-3">
@@ -65,6 +68,8 @@ export default function Controls({
             step={0.01}
             value={currentTime}
             onChange={handleProgressChange}
+            onMouseUp={releaseFocus}
+            onTouchEnd={releaseFocus}
             style={{
               backgroundImage: `linear-gradient(to right, rgba(255,255,255,0.9) ${progress}%, rgba(255,255,255,0.15) ${progress}%)`
             }}
@@ -130,6 +135,8 @@ export default function Controls({
                 step={1}
                 value={volumePercent}
                 onChange={handleVolumeInput}
+                onMouseUp={releaseFocus}
+                onTouchEnd={releaseFocus}
                 style={{
                   backgroundImage: `linear-gradient(to right, rgba(255,255,255,0.9) ${volumePercent}%, rgba(255,255,255,0.15) ${volumePercent}%)`
                 }}
