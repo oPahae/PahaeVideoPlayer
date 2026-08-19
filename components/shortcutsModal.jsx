@@ -21,19 +21,19 @@ export default function ShortcutsModal({ open, onClose }) {
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm px-4">
-      <div className="w-full max-w-md max-h-[80vh] overflow-y-auto rounded-2xl bg-neutral-900/80 border border-white/10 backdrop-blur-2xl shadow-2xl">
+    <div onClick={onClose} className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm px-4">
+      <div onClick={(e) => e.stopPropagation()} className="w-full max-w-2xl rounded-2xl bg-neutral-900/80 border border-white/10 backdrop-blur-2xl shadow-2xl">
         <div className="flex items-center justify-between px-6 py-4 border-b border-white/10">
           <h2 className="text-white text-base font-semibold">Raccourcis clavier</h2>
           <button onClick={onClose} className="p-1.5 rounded-lg hover:bg-white/10 transition-colors">
             <X size={18} className="text-white/70" />
           </button>
         </div>
-        <div className="px-6 py-4 flex flex-col gap-2">
+        <div className="px-6 py-5 grid grid-cols-2 gap-x-6 gap-y-2">
           {shortcuts.map((item) => (
             <div
               key={item.action}
-              className="flex items-center justify-between py-2 border-b border-white/5 last:border-b-0"
+              className="flex items-center justify-between gap-3 py-2 border-b border-white/5"
             >
               <span className="text-white/70 text-sm">{item.action}</span>
               <span className="px-2.5 py-1 rounded-md bg-white/10 border border-white/10 text-white text-xs font-mono tracking-wide">
